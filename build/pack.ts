@@ -74,6 +74,8 @@ async function pack()
     if (!existsSync(artifactPath))
         await mkdir(artifactPath);
 
+    await copyFile(".npmrc", join(artifactPath, ".npmrc"));
+
     await writeFile
     (
         join(artifactPath, "release-manifest.json"), 
