@@ -14,7 +14,7 @@ export async function generateReleaseArtifact(basePath: string, files: AssetInpu
             async (input) => 
             (
                 {
-                    paths: await glob(input.glob, { cwd: basePath, absolute: false }),
+                    paths: await glob(input.glob, { cwd: basePath, absolute: false, dot: true }),
                     label: input.label
                 }
             )
