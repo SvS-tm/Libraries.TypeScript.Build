@@ -4,6 +4,7 @@ import { replaceTscAliasPaths, ReplaceTscAliasPathsOptions } from "tsc-alias";
 import { copy } from "../../copy/copy";
 import { generateLicense } from "../../license/generate-license";
 import { generateReleaseArtifact } from "../../release-artifact/generate-release-artifact";
+import { join } from "path";
 
 export async function pack()
 {
@@ -11,33 +12,32 @@ export async function pack()
 
     execSync
     (
-        "tsc \
-        --project build/tsconfig.declarations.json", 
+        `tsc \
+        --project ${join(__dirname, "tsconfig.declarations.json")}`, 
         { stdio: 'inherit' }
     );
 
     await replaceTscAliasPaths
     (
         {
-            project: "build/tsconfig.declarations.json"
+            project: join(__dirname, "tsconfig.declarations.json")
         } as ReplaceTscAliasPathsOptions
     );
     
     execSync
     (
-        "babel \
+        `babel \
         obj \
         --out-dir ../bin \
-        --config-file \
-        ../build/babel.config.cts \
+        --config-file ${join(__dirname, "babel.config.cts")} \
         --extensions .ts,.tsx \
         --ignore **/*.d.ts \
         --source-maps \
-        --copy-files", 
+        --copy-files`, 
         { stdio: 'inherit' }
     );
 
-    await generateLicense("package.json", "build/LICENSE", "bin/LICENSE");
+    await generateLicense("package.json", join(__dirname, "LICENSE"), "bin/LICENSE");
 
     await copy(".", "bin", "package.json");
 
