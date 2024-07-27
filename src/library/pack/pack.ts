@@ -32,7 +32,7 @@ export async function pack()
     (
         `babel \
         obj \
-        --out-dir ../bin \
+        --out-dir bin \
         --config-file ${join(__dirname, "babel.config.cts")} \
         --extensions .ts,.tsx \
         --ignore **/*.d.ts \
