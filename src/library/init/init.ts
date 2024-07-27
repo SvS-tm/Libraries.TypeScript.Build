@@ -1,7 +1,7 @@
 import { existsSync } from "fs";
 import { copyFile, mkdir } from "fs/promises";
 import { glob } from "glob";
-import { basename } from "path";
+import { basename, join } from "path";
 
 export async function init()
 {
@@ -17,7 +17,7 @@ export async function init()
             (asset) => copyFile
             (
                 asset,
-                basename(asset)
+                join("build", basename(asset))
             )
         )
     );
