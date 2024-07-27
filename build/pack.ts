@@ -19,7 +19,7 @@ type ReleaseManifest =
 
 async function pack()
 {
-    const assets = await glob("**", { absolute: false, cwd: "assets", posix: true, nodir: true });
+    const assets = await glob("**", { absolute: false, cwd: "assets", posix: true, nodir: true, dot: true });
 
     await Promise.all
     (

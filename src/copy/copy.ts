@@ -15,9 +15,9 @@ export async function copy
     const absoluteSource = posix.join(currentDir, source);
     const absoluteDestination = posix.join(currentDir, destination);
     const includeGlob = posix.join(absoluteSource, include ?? "**");
-    const included = await glob(includeGlob, { absolute: false, cwd: absoluteSource, posix: true, nodir: true });
+    const included = await glob(includeGlob, { absolute: false, cwd: absoluteSource, posix: true, nodir: true, dot: true });
     const excluded = exclude 
-        ? await glob(posix.join(absoluteSource, exclude), { absolute: false, posix: true, cwd: absoluteSource, nodir: true })
+        ? await glob(posix.join(absoluteSource, exclude), { absolute: false, posix: true, cwd: absoluteSource, nodir: true, dot: true })
         : [];
 
     const filesToCopy = included.filter((path) => !excluded.includes(path));
