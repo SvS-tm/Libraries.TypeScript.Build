@@ -23,5 +23,5 @@ export async function build()
 
     await fixBarrels("./obj");
 
-    execSync(`tsc --project ${join(__dirname, "tsconfig.validate.json")}`, { stdio: 'inherit' });
+    execSync("tsc --project build/tsconfig.validate.json", { stdio: 'inherit' });
 }

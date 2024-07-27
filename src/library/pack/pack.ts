@@ -1,10 +1,10 @@
 import { execSync } from "child_process";
 import { rm } from "fs/promises";
+import { join } from "path";
 import { replaceTscAliasPaths, ReplaceTscAliasPathsOptions } from "tsc-alias";
 import { copy } from "../../copy/copy";
 import { generateLicense } from "../../license/generate-license";
 import { generateReleaseArtifact } from "../../release-artifact/generate-release-artifact";
-import { join } from "path";
 
 export async function pack()
 {
@@ -13,14 +13,14 @@ export async function pack()
     execSync
     (
         `tsc \
-        --project ${join(__dirname, "tsconfig.declarations.json")}`, 
+        --project build/tsconfig.declarations.json`, 
         { stdio: 'inherit' }
     );
 
     await replaceTscAliasPaths
     (
         {
-            project: join(__dirname, "tsconfig.declarations.json")
+            project: "build/tsconfig.declarations.json"
         } as ReplaceTscAliasPathsOptions
     );
     
