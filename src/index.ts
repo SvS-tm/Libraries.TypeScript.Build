@@ -7,6 +7,7 @@ import { register as registerCopy } from "./copy/register";
 import { register as registerBuild } from "./library/build/register";
 import { register as registerTest } from "./library/test/register";
 import { register as registerPack } from "./library/pack/register";
+import { register as registerInit } from "./library/init/register";
 
 program
     .name(meta.name)
@@ -20,5 +21,6 @@ registerCopy();
 registerBuild();
 registerTest();
 registerPack();
+registerInit();
 
 await program.parseAsync(process.argv);
