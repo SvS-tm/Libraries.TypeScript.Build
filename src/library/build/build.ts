@@ -4,6 +4,7 @@ import { copy } from "../../copy/copy";
 import { Barrelsby as barrelsby } from "barrelsby/bin";
 import { fixBarrels } from "../../fix-barrels/fix-barrels";
 import { join } from "path";
+import { StructureOption } from "barrelsby/bin/options/options";
 
 export async function build()
 {
@@ -21,10 +22,16 @@ export async function build()
     (
         {
             config: join(__dirname, "barrelsby.json"),
+            name: "index",
+            local: false,
             directory: "obj",
             location: "all",
             exclude: [ ".*\\.d\\.ts" ],
             delete: true,
+            noHeader: true,
+            structure: StructureOption.FLAT,
+            singleQuotes: false,
+            noSemicolon: false,
             verbose: true
         }
     );
