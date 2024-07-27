@@ -31,14 +31,14 @@ export async function pack()
     execSync
     (
         `babel \
-        obj \
-        --out-dir bin \
+        . \
+        --out-dir ../bin \
         --config-file ${join(__dirname, "babel.config.cts")} \
         --extensions .ts,.tsx \
         --ignore **/*.d.ts \
         --source-maps \
         --copy-files`, 
-        { stdio: 'inherit' }
+        { stdio: 'inherit', cwd: "obj" }
     );
 
     console.log("Generating license");
