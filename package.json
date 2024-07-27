@@ -1,6 +1,6 @@
 {
   "name": "@svs-tm/build",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Set of build scripts for TS projects",
   "scripts": {
     "build": "tsx build/build-project.ts",
