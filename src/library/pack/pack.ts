@@ -8,8 +8,10 @@ import { generateReleaseArtifact } from "../../release-artifact/generate-release
 
 export async function pack()
 {
+    console.log("Cleaning bin");
     await rm("bin", { recursive: true, force: true });
 
+    console.log("Compiling declarations");
     execSync
     (
         `tsc \
@@ -17,6 +19,7 @@ export async function pack()
         { stdio: 'inherit' }
     );
 
+    console.log("Fixing declarations import paths");
     await replaceTscAliasPaths
     (
         {
@@ -24,6 +27,7 @@ export async function pack()
         } as ReplaceTscAliasPathsOptions
     );
     
+    console.log("Transpiling with babel");
     execSync
     (
         `babel \
@@ -37,13 +41,18 @@ export async function pack()
         { stdio: 'inherit' }
     );
 
+    console.log("Generating license");
     await generateLicense("package.json", join(__dirname, "LICENSE"), "bin/LICENSE");
 
+    console.log("Copying package.json");
     await copy(".", "bin", "package.json");
 
+    console.log("Packing");
     execSync("pnpm pack --dir bin", { stdio: 'inherit' });
 
+    console.log("Copying npmrc");
     await copy(".", "bin/.release-artifact", ".npmrc");
 
+    console.log("Generating release artifact");
     await generateReleaseArtifact("./bin", [ { glob: "*.tgz", label: "package" } ]);
 }
