@@ -22,4 +22,3 @@ registerTest();
 registerPack();
 
 await program.parseAsync(process.argv);
-
