@@ -8,18 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@babel/cli':
-        specifier: ^7.24.8
-        version: 7.24.8(@babel/core@7.23.7)
-      '@babel/core':
-        specifier: ^7.23.7
-        version: 7.23.7
-      '@babel/preset-env':
-        specifier: ^7.23.8
-        version: 7.23.8(@babel/core@7.23.7)
-      '@babel/preset-typescript':
-        specifier: ^7.23.3
-        version: 7.23.3(@babel/core@7.23.7)
       barrelsby:
         specifier: ^2.8.1
         version: 2.8.1
@@ -45,6 +33,18 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(webpack@5.89.0)
     devDependencies:
+      '@babel/cli':
+        specifier: ^7.24.8
+        version: 7.24.8(@babel/core@7.23.7)
+      '@babel/core':
+        specifier: ^7.23.7
+        version: 7.23.7
+      '@babel/preset-env':
+        specifier: ^7.23.8
+        version: 7.23.8(@babel/core@7.23.7)
+      '@babel/preset-typescript':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.7)
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
