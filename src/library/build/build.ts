@@ -3,6 +3,7 @@ import { rm } from "fs/promises";
 import { copy } from "../../copy/copy";
 import { Barrelsby as barrelsby } from "barrelsby/bin";
 import { fixBarrels } from "../../fix-barrels/fix-barrels";
+import { join } from "path";
 
 export async function build()
 {
@@ -11,16 +12,16 @@ export async function build()
     execSync("tsc", { stdio: 'inherit' });
 
     await copy("src", "obj", undefined, "\\[tests\\]/**");
-    
+
     barrelsby
     (
         {
-            config: "build/barrelsby.json",
+            config: join(__dirname, "barrelsby.json"),
             directory: "./obj"
         }
     );
 
     await fixBarrels("./obj");
 
-    execSync("tsc --project build/tsconfig.validate.json", { stdio: 'inherit' });
+    execSync(`tsc --project ${join(__dirname, "tsconfig.validate.json")}`, { stdio: 'inherit' });
 }
