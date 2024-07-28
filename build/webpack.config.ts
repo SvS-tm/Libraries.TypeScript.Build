@@ -64,7 +64,7 @@ const configuration: Configuration =
     output: 
     {
         filename: "index.js",
-        path: path.resolve(process.cwd(), "bin"),
+        path: path.resolve(process.cwd(), "obj"),
         libraryTarget: "commonjs"
     },
     target: "node"
