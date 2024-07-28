@@ -31,8 +31,7 @@ export async function build()
             noHeader: true,
             structure: StructureOption.FLAT,
             singleQuotes: false,
-            noSemicolon: false,
-            verbose: true
+            noSemicolon: false
         }
     );
 
