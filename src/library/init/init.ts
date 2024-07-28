@@ -5,7 +5,8 @@ import { dirname, join } from "path";
 
 export async function init()
 {
-    const buildAssets = await glob("**", { cwd: join(__dirname, "init"), absolute: false, nodir: true, posix: true, dot: true });
+    const basePath = join(__dirname, "init");
+    const buildAssets = await glob("**", { cwd: basePath, absolute: false, nodir: true, posix: true, dot: true });
 
     await Promise.all
     (
@@ -17,10 +18,12 @@ export async function init()
 
                 if (!existsSync(directory))
                     await mkdir(directory, { recursive: true });
-            
+
+                console.log(asset);
+                
                 await copyFile
                 (
-                    join(__dirname, asset),
+                    join(basePath, asset),
                     asset
                 );
             }
